@@ -15,4 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    // return view('Fakultas/surat_permohonan');
+});
+// Route homepage   
+Route::get('/homepage', function () {
+    return view('homepage');
 });
