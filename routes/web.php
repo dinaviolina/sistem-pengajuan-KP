@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('/homepage', function () {
     return view('homepage');
 });
+//route fakultas
+Route::get('/fakultas', function () {
+    return view('Fakultas/surat_permohonan');
+});
