@@ -46,7 +46,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="{{ asset('import/assets/img/logo.png') }}" alt="">
-        <span class="d-none d-lg-block">Admin Pengajuan KP</span>
+        <span class="d-none d-lg-block">Sistem Pengajuan KP</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -286,7 +286,8 @@
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+
+            <a href={{asset('import/assets/tem/components-alerts.html') }}>
               <i class="bi bi-circle"></i><span>Alerts</span>
             </a>
           </li>
@@ -428,9 +429,6 @@
       </li><!-- End Charts Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
         <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="icons-bootstrap.html">
@@ -462,7 +460,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-faq.html">
           <i class="bi bi-question-circle"></i>
-          <span>F.A.Q</span>
+          <span>Status Pengajuan</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
@@ -473,36 +471,15 @@
         </a>
       </li><!-- End Contact Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li><!-- End Register Page Nav -->
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-login.html">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
+          <span>Logout</span>
         </a>
       </li><!-- End Login Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
-          <i class="bi bi-dash-circle"></i>
-          <span>Error 404</span>
-        </a>
-      </li><!-- End Error 404 Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-blank.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
-        </a>
-      </li><!-- End Blank Page Nav -->
-
     </ul>
-
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
@@ -521,8 +498,6 @@
         @yield('container')
 
     </div>
-
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -553,7 +528,5 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('/js/main.js"></script>
-
 </body>
-
 </html>
