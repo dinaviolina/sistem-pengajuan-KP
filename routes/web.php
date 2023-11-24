@@ -19,5 +19,14 @@ Route::get('/', function () {
 });
 // Route homepage   
 Route::get('/homepage', function () {
-    return view('homepage');
+    return view('homepage',[
+        "title" => "Homepage"
+    ]);
+    ;
+});
+//route fakultas
+Route::get('/fakultas', function () {
+    return view('Fakultas/surat_permohonan',[
+        "title" => "Fakultas"
+    ]);
 });
