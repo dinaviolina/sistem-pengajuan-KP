@@ -136,7 +136,6 @@
             <li class="dropdown-footer">
               <a href="#">Show all notifications</a>
             </li>
-
           </ul><!-- End Notification Dropdown Items -->
 
         </li><!-- End Notification Nav -->
@@ -241,13 +240,6 @@
             </li>
             <li>
               <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -430,12 +422,6 @@
 
       <li class="nav-item">
         <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-            </a>
-          </li>
-          <li>
             <a href="icons-remix.html">
               <i class="bi bi-circle"></i><span>Remix Icons</span>
             </a>
