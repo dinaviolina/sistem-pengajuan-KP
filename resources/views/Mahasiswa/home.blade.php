@@ -3,13 +3,18 @@
 @section('container')
 <section class="section profile">
   <div class="row">
-    <div class="col-xl-4">
+    @if (session()->has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert" style="text-align: center">
+          {{ session('success') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
 
+    <div class="col-xl-4">
       <div class="card">
         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-          <img src="{{ asset('import/assets/profile/' . Auth::guard('mahasiswa')->user()->image) }}" alt="Profil Mahasiswa" class="rounded-circle">
-          <h2>{{ Auth::guard('mahasiswa')->user()->nama_mhs}}</h2>
+          <img src="{{ asset('import/assets/profile/' . $mhs->image) }}" alt="Profil Mahasiswa" class="rounded-circle">
+          <h2>{{ $mhs->nama_mhs}}</h2>
           <h3>Mahasiswa</h3>
           {{-- <div class="social-links mt-2">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -17,6 +22,18 @@
             <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
           </div> --}}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+          <h3> Status Pengajuan KP : </h3>
+          @if(DB::table('kerja_prakteks')->where('mahasiswa_id', $mhs->id)->exists())
+            <h6 style="color: blue"> {{ $status->status_pengajuan_kp }} </h6>
+          @else
+            <h6 style="color: red"> "Anda belum mengajukan KP" </h6>
+            <a href="/permohonan_kp" type="button" class="btn btn-outline-success"> Ajukan </a>
+          @endif
         </div>
       </div>
 
@@ -52,38 +69,38 @@
               <h5 class="card-title">Profile Details</h5>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
+                <div class="col-lg-9 col-md-8">{{ $mhs->nama_mhs}}</div>
               </div>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label">Company</div>
-                <div class="col-lg-9 col-md-8">Universitas Trunojoyo Madura</div>
+                <div class="col-lg-3 col-md-4 label ">NIM</div>
+                <div class="col-lg-9 col-md-8">{{ $mhs->id}}</div>
               </div>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label">Job</div>
-                <div class="col-lg-9 col-md-8">Web Designer</div>
+                <div class="col-lg-3 col-md-4 label ">Program Studi</div>
+                <div class="col-lg-9 col-md-8">Teknik Informatika</div>
               </div>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label">Country</div>
-                <div class="col-lg-9 col-md-8">USA</div>
+                <div class="col-lg-3 col-md-4 label">Tahun Masuk</div>
+                <div class="col-lg-9 col-md-8">{{ $mhs->angkatan }}</div>
               </div>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label">Address</div>
-                <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                <div class="col-lg-3 col-md-4 label">Tempat Lahir</div>
+                <div class="col-lg-9 col-md-8">{{ $mhs->tempat_lahir }}</div>
               </div>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label">Phone</div>
-                <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                <div class="col-lg-3 col-md-4 label">Tanggal Lahir</div>
+                <div class="col-lg-9 col-md-8">{{ $mhs->tanggal_lahir }}</div>
               </div>
 
               <div class="row">
-                <div class="col-lg-3 col-md-4 label">Email</div>
-                <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                <div class="col-lg-3 col-md-4 label">Jenis Kelamin</div>
+                <div class="col-lg-9 col-md-8">{{ $mhs->jenis_kelamin }}</div>
               </div>
 
             </div>
