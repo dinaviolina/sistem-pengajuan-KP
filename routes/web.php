@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,47 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    // return view('Fakultas/surat_permohonan');
+    return view('login');
 });
-// Route homepage   
-Route::get('/homepage', function () {
-    return view('homepage');
+
+Route::post('/succesLogin', [LoginController::class, 'postLogin']);
+
+// ------------------------------------ Mahasiswa
+Route::get('/home', function () {
+    return view('Mahasiswa/home',[
+        "title" => "Mahasiswa"
+    ]);
+});
+
+
+// ------------------------------------ Dosen Wali
+Route::get('/dpa', function () {
+    return view('DPA/home',[
+        "title" => "DPA"
+    ]);
+});
+
+
+// ------------------------------------ Kaprodi
+Route::get('/kaprodi', function () {
+    return view('Kaprodi/home',[
+        "title" => "Kaprodi"
+    ]);
+});
+
+
+// ------------------------------------ Fakultas
+Route::get('/fakultas', function () {
+    return view('Fakultas/surat_permohonan',[
+        "title" => "Fakultas"
+    ]);
+});
+
+
+// ------------------------------------ Admin
+Route::get('/admin', function () {
+    return view('Admin/home',[
+        "title" => "Admin"
+    ]);
+    ;
 });
