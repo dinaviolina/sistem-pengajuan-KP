@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +24,9 @@ Route::post('/succesLogin', [LoginController::class, 'postLogin']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // ------------------------------------ Mahasiswa
-Route::get('/home', function () {
-    return view('Mahasiswa/home',[
-        "title" => "Mahasiswa"
-    ]);
-});
+Route::get('/home', [MahasiswaController::class, 'profil']);
+Route::get('/permohonan_kp', [MahasiswaController::class, 'permohonan']);
+Route::get('/pengajuan', [MahasiswaController::class, 'status_pengajuan']);
 
 
 // ------------------------------------ Dosen Wali
