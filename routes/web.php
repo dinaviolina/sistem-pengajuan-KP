@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Route::post('/succesLogin', [LoginController::class, 'postLogin']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 // ------------------------------------ Mahasiswa
 Route::get('/home', function () {

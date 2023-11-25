@@ -17,7 +17,7 @@ class LoginController extends Controller
         if (Auth::guard('mahasiswa')->attempt($request->only('id','password'))) {
             return redirect('/home');
         } elseif (Auth::guard('dosen_wali') -> attempt ($request->only('id','password'))) {
-            return redirect('/DPA');
+            return redirect('/dpa');
         } elseif (Auth::guard('kaprodi') -> attempt ($request->only('id','password'))) {
             return redirect('/kaprodi');
         } elseif (Auth::guard('fakultas') -> attempt ($request->only('id','password'))) {
@@ -42,5 +42,6 @@ class LoginController extends Controller
         } elseif (Auth::guard("admin")->check()){
             Auth::guard("admin")->logout();
         }
+        return redirect('/');
     }
 }
