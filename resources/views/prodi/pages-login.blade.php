@@ -1,4 +1,4 @@
-@extends('layouts.prodi')
+@extends('layouts.prodi_template')
 @section('main')
 <div class="container">
 

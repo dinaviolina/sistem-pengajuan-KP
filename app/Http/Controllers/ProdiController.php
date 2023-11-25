@@ -3,12 +3,115 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ProdiController extends Controller
 {
+    // --------------Prodi
     public function index() {
-        return view('prodi.home',[
+        $data_prodi = DB::table('prodi')
+        ->select('*')
+        ->join('fakultas', 'prodi.id_admin_fakultas', '=', 'fakultas.id_admin_fakultas')
+        ->where('id_prodi', '=', 55201)
+        ->first();
+
+        return view('prodi.home',['title' => "Dashboard Prodi",'prodi' => $data_prodi]);
+    }
+
+    public function spkp_not_reviewed() {
+        // $data_spkp = DB::table('mahasiswa')
+        // ->select('*')
+        // ->join('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
+        // ->where('status_pengajuan_kp', '=', '')//telah disetujui prodi
+        // ->orWhere('status_pengajuan_kp', '=', '') //telah disetujui fakultas karena otomatis disetujui prodi
+        // ->first();
+
+        $data_prodi = DB::table('prodi')
+        ->select('*')
+        ->join('fakultas', 'prodi.id_admin_fakultas', '=', 'fakultas.id_admin_fakultas')
+        ->where('id_prodi', '=', 55201)
+        ->first();
+
+        return view('prodi.spkp_belum-ditinjau',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi]);
+        // return view('prodi.spkp_belum-ditinjau',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'spkp-s' => $data_spkp]);
+    }
+
+    public function spkp_approved() {
+        // $data_spkp = DB::table('mahasiswa')
+        // ->select('*')
+        // ->join('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
+        // ->where('status_pengajuan_kp', '=', '')//telah disetujui prodi
+        // ->orWhere('status_pengajuan_kp', '=', '') //telah disetujui fakultas karena otomatis disetujui prodi
+        // ->first();
+
+        $data_prodi = DB::table('prodi')
+        ->select('*')
+        ->join('fakultas', 'prodi.id_admin_fakultas', '=', 'fakultas.id_admin_fakultas')
+        ->where('id_prodi', '=', 55201)
+        ->first();
+
+        return view('prodi.spkp_disetujui',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi]);
+        // return view('prodi.spkp_disetujui',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'spkp-s' => $data_spkp]);
+    }
+
+    public function spkp_approve($id) {
+        DB::table('mahasiswa')
+            ->where('nim', $id)
+            ->update(['status_pengajuan_kp' => ""]); //telah disetujui prodi
+
+        return redirect('/prodi/spkp-not-reviewed');
+    }
+
+    public function profile() {
+        $data_prodi = DB::table('prodi')
+        ->select('*')
+        ->join('fakultas', 'prodi.id_admin_fakultas', '=', 'fakultas.id_admin_fakultas')
+        ->where('id_prodi', '=', 55201)
+        ->first();
+
+        return view('prodi.profile',['title' => "Profil Prodi",'prodi' => $data_prodi]);
+    }
+    
+    public function editProfile(Request $request, $id) {
+        $data = $request->except(['_token']);
+
+        if ($request->file('foto_kaprodi')) {
+            $file = $request->file('foto_kaprodi');
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+
+            // Pindahkan file ke direktori yang diinginkan
+            $file->move(public_path('prodi/img/profil'), $fileName);
+
+            // Simpan path relatif gambar ke dalam $data
+            $data['foto_kaprodi'] = $fileName;
+        }
+        if ($request->file('ttd_kaprodi')) {
+            $file = $request->file('ttd_kaprodi');
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+
+            // Pindahkan file ke direktori yang diinginkan
+            $file->move(public_path('prodi/img/ttd'), $fileName);
+
+            // Simpan path relatif gambar ke dalam $data
+            $data['ttd_kaprodi'] = $fileName;
+        }
+
+        DB::table('prodi')
+            ->where('id_prodi', $id)
+            ->update($data);
+
+        return redirect('/prodi/profile');
+    }
+    
+
+    public function logout() {
+        
+    }
+
+    //--------------------Prodi Template
+    public function template() {
+        return view('prodi.index',[
             "title" => "Prodi"
         ]);
     }
@@ -176,10 +279,5 @@ class ProdiController extends Controller
         return view('prodi.icons-boxicons',[
             "title" => "Prodi"
         ]);
-    }
-
-    
-    public function logout() {
-        
     }
 }
