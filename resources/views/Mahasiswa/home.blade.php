@@ -126,16 +126,16 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="users-profile.html">
+        <a class="nav-link" href="/home">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
       </li><!-- End Dashboard Nav -->
     
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/pengajuan">
+        <a class="nav-link  collapsed" href="/pengajuan">
           <i class="bi bi-question-circle"></i>
-          <span>Status Pengajuan</span>
+          <span>Informasi Pengajuan</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 

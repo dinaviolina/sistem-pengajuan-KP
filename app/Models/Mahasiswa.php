@@ -18,4 +18,9 @@ class Mahasiswa extends Authenticatable
     {
         return $this->hasOne(Kerja_praktek::class, 'mahasiswa_id');
     }
+
+    public function dosenWali()
+    {
+        return $this->belongsTo(Dosen_wali::class, 'dosen_wali');
+    }
 }

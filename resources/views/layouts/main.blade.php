@@ -207,23 +207,9 @@
         </li><!-- End Messages Nav -->
 
         <li class="nav-item dropdown pe-3">
-
-          @if (Auth::guard('mahasiswa')->check())
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('import/assets/profile/' . Auth::guard('mahasiswa')->user()->image) }}" alt="Profile" class="rounded-circle">
-              <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::guard('mahasiswa')->user()->nama_mhs }}</span>
-            </a><!-- End Profile Iamge Icon -->
-
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-              <li class="dropdown-header">
-                <h6>{{ Auth::guard('mahasiswa')->user()->nama_mhs }}</h6>
-                <span>Mahasiswa</span>
-              </li>
-              
-          @elseif (Auth::guard('dosen_wali')->check())
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                 <img src="{{ asset('import/assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::guard('dosen_wali')->user()->id}}</span>
+                <span class="d-none d-md-block dropdown-toggle ps-2">nama</span>
               </a><!-- End Profile Iamge Icon -->
               
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

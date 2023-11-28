@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'jenis_kelamin' => 'perempuan',
             'angkatan' => '2021',
             'jumlah_sks' => '88',
-            'image' => '',
+            'image' => 'indah_pratiwi.png',
             'password' => Hash::make('123456'),
             ]
         ]);
