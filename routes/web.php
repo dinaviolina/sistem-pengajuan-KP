@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminfakultasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,20 @@ Route::get('/homepage', function () {
     ;
 });
 //route fakultas
-Route::get('/fakultas', function () {
-    return view('Fakultas/surat_permohonan',[
-        "title" => "Fakultas"
+Route::get('/Fakultas/data_acc_surat_permohonan', function () {
+    return view('Fakultas/data_acc_surat_permohonan',[
+        "title" => "Data Acc Surat Permohonan"
     ]);
 });
+#route profil fakltas
+Route::get('/profil', function () {
+    return view('Fakultas/profil',[
+        "title" => "Profil Fakultas"
+    ]);
+});
+// Route::get('/Fakultas/data', function(){return view('Fakultas/data_pengajuan',["title"=>"Data Surat"]);});
+// data pengajuan
+Route::get('/Fakultas/data', [AdminfakultasController::class, 'index']) ;
+// data surat pengajuan yang di acc
+Route::get('/Fakultas/acc', [AdminfakultasController::class, 'data_acc']) ;
+Route::get('/Fakultas/sp', [AdminfakultasController::class, 'generatesurat']);
