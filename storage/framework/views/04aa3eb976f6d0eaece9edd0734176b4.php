@@ -1,1 +1,0 @@
-<h1>Project PPB Kelompok 4 </h1><?php /**PATH C:\xampp\htdocs\2023\PPB_KP\resources\views/welcome.blade.php ENDPATH**/ ?>
