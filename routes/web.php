@@ -49,7 +49,6 @@ Route::get('/profil', function () {return view('Fakultas/profil',["title" => "Pr
 Route::get('/Fakultas/data', [AdminfakultasController::class, 'index']) ;
 Route::get('/Fakultas/acc', [AdminfakultasController::class, 'data_acc']) ;
 Route::get('/Fakultas/sp', [AdminfakultasController::class, 'generatesurat']);
-
 // --------------Prodi
 Route::get('/prodi/home', [ProdiController::class, 'index']);
 Route::get('/prodi/template', [ProdiController::class, 'template']);
