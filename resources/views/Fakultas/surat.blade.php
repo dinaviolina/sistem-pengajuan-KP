@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.fakultas_main')
 @section('container')
 
 <div class="pagetitle">
@@ -11,16 +11,14 @@
     </ol>
 </nav>
 </div><!-- End Page Title -->
-
 <section class="section">
 <div class="row">
     <div class="col-lg-6">
     <div class="card">
         <div class="card-body">
-        <h5 class="card-title">Input Surat Pengantar KP</h5>
+        <h5 class="card-title">Form Surat Permohonan KP</h5>
         <!-- General Form Elements -->
-        <form method="POST" action="/sp">
-        
+        <form method="POST" action="{{ url('/Fakultas/sp') }}>
             @csrf
             <div class="row mb-3">
             <label for="no_surat" class="col-sm-2 col-form-label">No Surat</label>

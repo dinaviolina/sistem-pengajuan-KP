@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.fakultas_main')
 @section('container')
 <!-- ======= Sidebar ======= -->
     <h1>Profile</h1>
@@ -17,8 +17,9 @@
         <div class="card">
         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">       
             <img src="{{ asset('import/assets/img/profile-img.jpg')}}" alt="Profile" class="rounded-circle">
-            <h2>Wulan Anderson</h2>
-            <h3>Admin Fakultas</h3>
+            @foreach ($profil_fakultas as $profil)
+            <h2>{{$profil->namaDekan}}</h2>
+            <h3>Dekan Fakultas Teknik</h3>
             <div class="social-links mt-2">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -43,45 +44,27 @@
             </ul>
             <div class="tab-content pt-2">
             <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                <!-- <h5 class="card-title">About</h5>
-                <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p> -->
                 <h5 class="card-title">Profile Details</h5>
+                
+                <div class="row">
+                <div class="col-lg-3 col-md-4 label ">Kode Fakultas</div>
+                <div class="col-lg-9 col-md-8">{{ $profil->kodeFakultas }}</div>
+                </div>
 
                 <div class="row">
-                <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                <div class="col-lg-9 col-md-8">Wulan Anderson</div>
+                <div class="col-lg-3 col-md-4 label">Nama Fakultas</div>
+                <div class="col-lg-9 col-md-8">{{ $profil->nama_fakultas }}</div>
                 </div>
 
                 <div class="row">
                 <div class="col-lg-3 col-md-4 label">NIP</div>
-                <div class="col-lg-9 col-md-8">20021106202401110901</div>
+                <div class="col-lg-9 col-md-8">{{ $profil->NIPdekan }} </div>
                 </div>
-
                 <div class="row">
-                <div class="col-lg-3 col-md-4 label">Job</div>
-                <div class="col-lg-9 col-md-8">Admin Fakultas </div>
+                <div class="col-lg-3 col-md-4 label">Nama</div>
+                <div class="col-lg-9 col-md-8">{{ $profil->namaDekan }} </div>
                 </div>
-
-                <div class="row">
-                <div class="col-lg-3 col-md-4 label">Country</div>
-                <div class="col-lg-9 col-md-8">Indonesia</div>
-                </div>
-
-                <div class="row">
-                <div class="col-lg-3 col-md-4 label">Address</div>
-                <div class="col-lg-9 col-md-8">Telang, Bangkalan</div>
-                </div>
-
-                <div class="row">
-                <div class="col-lg-3 col-md-4 label">Phone</div>
-                <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
-                </div>
-
-                <div class="row">
-                <div class="col-lg-3 col-md-4 label">Email</div>
-                <div class="col-lg-9 col-md-8">admin99@gmail.com</div>
-                </div>
-
+                
             </div>
 
             <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -98,79 +81,30 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                    <label for="kode_fak" class="col-md-4 col-lg-3 col-form-label">Kode Fakultas</label>
                     <div class="col-md-8 col-lg-9">
-                    <input name="fullName" type="text" class="form-control" id="fullName" value="">
+                    <input name="kode_fak" type="text" class="form-control" id="kode_fak" value="{{ $profil->kodeFakultas }}">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="company" class="col-md-4 col-lg-3 col-form-label">NIP</label>
+                    <label for="nama_fak" class="col-md-4 col-lg-3 col-form-label">Nama Fakultas</label>
                     <div class="col-md-8 col-lg-9">
-                    <input name="company" type="text" class="form-control" id="company" value="Lueilwitz, Wisoky and Leuschke">
+                    <input name="nama_fak" type="text" class="form-control" id="nama_fak" value="{{ $profil->nama_fakultas }}">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                    <label for="nip" class="col-md-4 col-lg-3 col-form-label">NIP</label>
                     <div class="col-md-8 col-lg-9">
-                    <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                    <input name="nip" type="text" class="form-control" id="nip" value="{{ $profil->NIPdekan }}">
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                    <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama</label>
                     <div class="col-md-8 col-lg-9">
-                    <input name="country" type="text" class="form-control" id="Country" value="USA">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                    <div class="col-md-8 col-lg-9">
-                    <input name="address" type="text" class="form-control" id="Address" value="A108 Adam Street, New York, NY 535022">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                    <div class="col-md-8 col-lg-9">
-                    <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                    <div class="col-md-8 col-lg-9">
-                    <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-                    <div class="col-md-8 col-lg-9">
-                    <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-                    <div class="col-md-8 col-lg-9">
-                    <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-                    <div class="col-md-8 col-lg-9">
-                    <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                    <div class="col-md-8 col-lg-9">
-                    <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
+                    <input name="nama" type="text" class="form-control" id="nama" value="{{ $profil->namaDekan }}">
                     </div>
                 </div>
                 <div class="text-center">
@@ -179,6 +113,7 @@
                 </form><!-- End Profile Edit Form -->
             </div>
             </div><!-- End Bordered Tabs -->
+            @endforeach
         </div>
         </div>
     </div>

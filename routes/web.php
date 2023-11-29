@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\MahasiswaController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,19 +37,17 @@ Route::get('/dpa', function () {
         "title" => "DPA"
     ]);
 });
-
 //route FAKULTAS
-Route::get('/Fakultas/data_acc_surat_permohonan', function () {
-    return view('Fakultas/data_acc_surat_permohonan',[
-        "title" => "Data Acc Surat Permohonan"
-    ]);
-});
-Route::get('/profil', function () {return view('Fakultas/profil',["title" => "Profil Fakultas"]);});
+
+// Route::get('/Fakultas/profil', function () {return view('Fakultas/profil',["title"=>"Profil"]);});
+Route::get('/Fakultas/profil', [AdminfakultasController::class, 'showProfile']) ;
 // Route::get('/Fakultas/data', function(){return view('Fakultas/data_pengajuan',["title"=>"Data Surat"]);});
-// data pengajuan
-Route::get('/Fakultas/data', [AdminfakultasController::class, 'index']) ;
-Route::get('/Fakultas/acc', [AdminfakultasController::class, 'data_acc']) ;
-Route::get('/Fakultas/sp', [AdminfakultasController::class, 'generatesurat']);
+Route::get('/Fakultas/data_pengajuan', [AdminfakultasController::class, 'index']) ;
+Route::get('/Fakultas/surat', [AdminfakultasController::class, 'create_surat']) ;
+Route::get('/Fakultas/data_acc_surat_permohonan', [AdminfakultasController::class, 'data_acc_surat_permohonan']);
+Route::post('/Fakultas/sp', [AdminfakultasController::class, 'generatesurat']);
+
+
 // --------------Prodi
 Route::get('/prodi/home', [ProdiController::class, 'index']);
 Route::get('/prodi/template', [ProdiController::class, 'template']);

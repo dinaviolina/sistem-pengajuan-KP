@@ -65,19 +65,16 @@
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
         <li class="nav-item d-block d-lg-none">
           <a class="nav-link nav-icon search-bar-toggle " href="#">
             <i class="bi bi-search"></i>
           </a>
         </li><!-- End Search Icon-->
-        
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number">4</span>
           </a><!-- End Notification Icon -->
-          
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               You have 4 new notifications
@@ -121,11 +118,9 @@
                 <p>2 hrs. ago</p>
               </div>
             </li>
-
             <li>
               <hr class="dropdown-divider">
             </li>
-
             <li class="notification-item">
               <i class="bi bi-info-circle text-primary"></i>
               <div>
@@ -134,7 +129,6 @@
                 <p>4 hrs. ago</p>
               </div>
             </li>
-
             <li>
               <hr class="dropdown-divider">
             </li>
@@ -142,16 +136,12 @@
               <a href="#">Show all notifications</a>
             </li>
           </ul><!-- End Notification Dropdown Items -->
-
         </li><!-- End Notification Nav -->
-
         <li class="nav-item dropdown">
-
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
             <span class="badge bg-success badge-number">3</span>
           </a><!-- End Messages Icon -->
-
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
               You have 3 new messages
@@ -160,7 +150,6 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-            
             <li class="message-item">
               <a href="#">
                 <img src="{{ asset('import/assets/img/messages-1.jpg') }}" alt="" class="rounded-circle">
@@ -206,34 +195,24 @@
             <li class="dropdown-footer">
               <a href="#">Show all messages</a>
             </li>
-
           </ul><!-- End Messages Dropdown Items -->
-
         </li><!-- End Messages Nav -->
-
-        <div class="container mt-4">
-            @yield('container')
-        </div>
+        
         </main>
       </ul>
     </nav>
 
   </header><!-- End Header -->
-
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
-
       <li class="nav-heading">Pages</li>
-
       <li class="nav-item">
-        
         <a class="nav-link collapsed" href="">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
-
       <li class="nav-item">
         <a class="nav-link collapsed" href="../Fakultas/surat">
           <i class="bi bi-question-circle"></i>
@@ -259,7 +238,6 @@
           <span>Logout</span>
         </a>
       </li>
-      <!-- End Login Page Nav -->
     </ul>
   </aside><!-- End Sidebar-->
         <li class="nav-item dropdown pe-3">
@@ -366,29 +344,50 @@
             </li><!-- End Dashboard Nav -->
             <!-- End Components Nav -->
             <li class="nav-heading">Pages</li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Status Pengajuan</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="/logout">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Logout</span>
-              </a>
+            <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-heading">Pages</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../Fakultas/profil">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../Fakultas/surat">
+          <i class="bi bi-question-circle"></i>
+          <span>Status Pengajuan</span>
+        </a>
+      </li> 
+      <!-- <li class="nav-item"> -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="../Fakultas/data_pengajuan">
+          <i class="bi bi-database "></i>
+          <span>Data Pengajuan</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="../Fakultas/data_acc_surat_permohonan">
+            <i class="bi bi-folder-check"></i>
+            <span>Data Acc Surat Permohonan</span>
+          </a>
         </li>
-          </ul>
+        <a class="nav-link collapsed" href="pages-login.html">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Logout</span>
+        </a>
+      </li>
+    </ul>
         </aside>
-      @endif
 
-  <!-- <main id="main" class="main"> -->
+<main id="main" class="main">
+  <div class="container mt-4">
+      @yield('container')
+
+  </div>
+</main>
+      
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
