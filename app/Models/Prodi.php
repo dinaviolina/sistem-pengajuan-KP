@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Prodi extends Model
+class Prodi extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'prodi';
-    protected $guards = ['id_prodi'];
+    protected $table = 'prodis';
+    protected $guards = [];
+    protected $fillable=['kodeProdi', 'password', 'namaProdi', 'NIPkaprodi', 'namaKaprodi', 'kodeFakultas'];
 }

@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+  <title>Login Sistem Informasi Pengajuan KP</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('import/assets/img/utm.png') }}">
-    <link href="{{ asset('import/assets/img/utm.png') }}">
+    <link href="{{ asset('import/assets/img/logo.png') }}">
+    <link href="{{ asset('import/assets/img/logo.png') }}">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -49,6 +49,13 @@
                     <h5 class="card-title text-center pb-0 fs-4">Sistem Pengajuan KP</h5>
                     <p class="text-center small">Enter your id and password to login</p>
                   </div>
+
+                  @if (session()->has('wrong'))
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="text-align: center">
+                        {{ session('wrong') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  @endif
 
                   <form action="/succesLogin" method="post" class="row g-3 needs-validation">
                     @csrf
