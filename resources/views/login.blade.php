@@ -50,19 +50,34 @@
                     <p class="text-center small">Enter your id and password to login</p>
                   </div>
 
-                  <form action="/succesLogin" method="post" class="row g-3 needs-validation">
+                  <form action="/login" method="post">
                     @csrf
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">NIM / NIP</label>
+                      <label for="username" class="form-label">NIM / NIP</label>
                       <div class="input-group has-validation">
-                        <input type="text" name="id" class="form-control" id="yourUsername" required>
+                        <input type="text" name="username" class="form-control" id="username" required>
                         <div class="invalid-feedback">Please enter your username.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <label for="role" class="form-label">Role</label>
+                      <select class="form-select" name="role" id="role" required>
+                        <option value="">Choose...</option>
+                        <option value="mahasiswa">Mahasiswa</option>
+                        <option value="dpa">DPA</option>
+                        <option value="prodi">Prodi</option>
+                        <option value="fakultas">Fakultas</option>
+                        <option value="admin">Admin</option>
+                      </select>
+                      <div class="invalid-feedback">Please enter your Role!</div>
+                    </div>
+
+
+
+                    <div class="col-12">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" name="password" class="form-control" id="password" required>
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
 

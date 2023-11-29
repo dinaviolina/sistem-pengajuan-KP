@@ -11,5 +11,4 @@ class Fakultas extends Authenticatable
 
     protected $table = 'fakultas';
     protected $guards = [];
-    protected $fillable=['id', 'password'];
 }

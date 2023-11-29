@@ -40,7 +40,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="/prodi/home" class="logo d-flex align-items-center">
         <img src="{{ asset('prodi/img/logo.png') }}" alt="">
-        <span class="d-none d-lg-block">SIKP</span>
+        <span class="d-none d-lg-block">SiJUTEK</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -59,14 +59,14 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{{ asset('prodi/img/profil/'.$prodi->foto_kaprodi) }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{ $prodi->nama_prodi }}</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{ $prodi->namaProdi }}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li>
               <a class="dropdown-item d-flex align-items-center" href="/prodi/profile">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
+                <span>Profil</span>
               </a>
             </li>
             <li>

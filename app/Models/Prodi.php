@@ -1,15 +1,15 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class Prodi extends Model
+class Prodi extends Model implements Authenticatable
 {
+    use AuthenticatableTrait;
     use HasFactory;
 
     protected $table = 'prodi';
-    protected $guards = ['id_prodi'];
 }

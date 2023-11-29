@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::post('/succesLogin', [LoginController::class, 'postLogin']);
+Route::post('/login', [LoginController::class, 'postLogin']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // ------------------------------------ Mahasiswa
@@ -39,14 +39,17 @@ Route::get('/dpa', function () {
 
 // --------------Prodi
 Route::get('/prodi/home', [ProdiController::class, 'index']);
-Route::get('/prodi/template', [ProdiController::class, 'template']);
 Route::get('/prodi/spkp-not-reviewed', [ProdiController::class, 'spkp_not_reviewed']);
+Route::get('/prodi/spkp-review/{id}', [ProdiController::class, 'spkp_review']);
 Route::get('/prodi/spkp-not-reviewed/approve/{id}', [ProdiController::class, 'spkp_approve']);
+Route::get('/prodi/spkp-detail/{id}', [ProdiController::class, 'spkp_detail']);
 Route::get('/prodi/spkp-approved', [ProdiController::class, 'spkp_approved']);
 Route::get('/prodi/profile', [ProdiController::class, 'profile']);
 Route::post('/prodi/edit-profile/{id}', [ProdiController::class, 'editProfile']);
+Route::get('/prodi/logout', [ProdiController::class, 'logout']);
 
 //---------------Prodi Template
+Route::get('/prodi/template', [ProdiController::class, 'template']);
 Route::get('/prodi/users-profile', [ProdiController::class, 'usersProfile']);
 Route::get('/prodi/pages-faq', [ProdiController::class, 'pagesFaq']);
 Route::get('/prodi/pages-contact', [ProdiController::class, 'pagesContact']);

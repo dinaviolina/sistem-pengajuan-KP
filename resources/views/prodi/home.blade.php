@@ -28,7 +28,7 @@
                   <i class="bi bi-file-earmark-excel"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>145</h6>
+                  <h6>{{ $spkp_not_reviewed }}</h6>
                   <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp-not-reviewed">Tinjau sekarang</a>
                 </div>
               </div>
@@ -49,7 +49,7 @@
                   <i class="bi bi-file-earmark-check-fill"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>132</h6>
+                  <h6>{{ $spkp_approved }}</h6>
                   <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp-approved">Lihat semuanya</a>
                 </div>
               </div>
@@ -62,14 +62,14 @@
 
           <div class="card info-card sales-card">
             <div class="card-body">
-              <h5 class="card-title">Pengajuan <span>| Seluruh Periode</span></h5>
+              <h5 class="card-title">Pengajuan <span>| {{ $periode->semester }} {{ $periode->tahunMulai }}/{{ $periode->tahunAkhir }}</span></h5>
 
               <div class="d-flex align-items-center">
                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                   <i class="bi bi-file-earmark-bar-graph-fill"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>1244</h6>
+                  <h6>{{ $spkp }}</h6>
                 </div>
               </div>
             </div>

@@ -25,29 +25,22 @@
                 <th>NIM</th>
                 <th>Nama</th>
                 <th>SKS</th>
-                <th data-type="date" data-format="DD/MM/YYYY">Tanggal</th>
+                <th>Periode</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
+              @foreach($spkps as $spkp)
               <tr>
-                <td>210411100024</td>
-                <td>Isnaini Septyana Wanda</td>
-                <td>144</td>
-                <td>2002/03/09</td>
+                <td>{{ $spkp->nim_mhs }}</td>
+                <td>{{ $spkp->nama_mhs }}</td>
+                <td>{{ $spkp->jumlahSKS }}</td>
+                <td>{{ $spkp->semester }} {{ $spkp->tahunMulai }}/{{ $spkp->tahunAkhir }}</td>
                 <td>
-                  <a type="button" class="btn btn-success btn-sm" href="/prodi/spkp-not-reviewed/approve/{id}">Setujui</a>
+                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp-review/{id}">Tinjau</a>
                 </td>
               </tr>
-              <tr>
-                <td>210411100162</td>
-                <td>Mohammad Hoiruttamim</td>
-                <td>144</td>
-                <td>2002/01/08</td>
-                <td>
-                  <a type="button" class="btn btn-success btn-sm" href="/prodi/spkp-not-reviewed/approve/{id}">Setujui</a>
-                </td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
           <!-- End Table with stripped rows -->

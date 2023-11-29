@@ -19,9 +19,9 @@
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
             <img src="{{ asset('prodi/img/profil/'.$prodi->foto_kaprodi) }}" alt="Profile" class="rounded-circle">
-            <h2 class="text-center">{{ $prodi->nama_kaprodi }}</h2>
+            <h2 class="text-center">{{ $prodi->namaKaprodi }}</h2>
             <br>
-            <h3>Kaprodi {{ $prodi->nama_prodi }}</h3>
+            <h3>Kaprodi {{ $prodi->namaProdi }}</h3>
           </div>
         </div>
 
@@ -49,17 +49,17 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Kode Prodi</div>
-                  <div class="col-lg-9 col-md-8">{{ $prodi->id_prodi }}</div>
+                  <div class="col-lg-9 col-md-8">{{ $prodi->kodeProdi }}</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Nama Prodi</div>
-                  <div class="col-lg-9 col-md-8">{{ $prodi->nama_prodi }}</div>
+                  <div class="col-lg-9 col-md-8">{{ $prodi->namaProdi }}</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Fakultas</div>
-                  <div class="col-lg-9 col-md-8">{{ $prodi->nama_admin }}</div>
+                  <div class="col-lg-9 col-md-8">{{ $prodi->nama_fakultas }}</div>
                 </div>
 
 
@@ -67,24 +67,12 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Nama Lengkap</div>
-                  <div class="col-lg-9 col-md-8">{{ $prodi->nama_kaprodi }}</div>
+                  <div class="col-lg-9 col-md-8">{{ $prodi->namaKaprodi }}</div>
                 </div>
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">NIP</div>
-                  <div class="col-lg-9 col-md-8">{{ $prodi->nip_kaprodi }}</div>
-                </div>
-
-                <div class="row">
-                  <div class="col-lg-3 col-md-4 label">Tanda Tangan Digital</div>
-                  <div class="col-lg-9 col-md-8">
-                    @if ($prodi->ttd_kaprodi == null)
-                        <p>Belum ada tanda tangan digital</p>
-                    @else
-                      <img src="{{ asset('prodi/img/ttd/'.$prodi->ttd_kaprodi) }}" width="30%" alt="ttd_digital">
-
-                    @endif
-                  </div>
+                  <div class="col-lg-9 col-md-8">{{ $prodi->NIPkaprodi }}</div>
                 </div>
 
               </div>
@@ -106,25 +94,19 @@
                   </div>
 
                   <div class="row mb-3">
-                    <label for="nama_kaprodi" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                    <label for="namaKaprodi" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="nama_kaprodi" type="text" class="form-control" id="nama_kaprodi" value="{{ $prodi->nama_kaprodi }}">
+                      <input name="namaKaprodi" type="text" class="form-control" id="namakaprodi" value="{{ $prodi->namaKaprodi }}">
                     </div>
                   </div>
 
                   <div class="row mb-3">
-                    <label for="nip_kaprodi" class="col-md-4 col-lg-3 col-form-label">NIP</label>
+                    <label for="NIPkaprodi" class="col-md-4 col-lg-3 col-form-label">NIP</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="nip_kaprodi" type="text" class="form-control" id="nip_kaprodi" value="{{ $prodi->nip_kaprodi }}">
+                      <input name="NIPkaprodi" type="text" class="form-control" id="NIPkaprodi" value="{{ $prodi->NIPkaprodi }}">
                     </div>
                   </div>
 
-                  <div class="row mb-3">
-                    <label for="ttd_kaprodi" class="col-md-4 col-lg-3 col-form-label">Tanda Tangan Digital</label>
-                    <div class="col-md-8 col-lg-9">
-                      <input name="ttd_kaprodi" type="file" class="form-control" id="ttd_kaprodi">
-                    </div>
-                  </div>
                   <br>
                   <div class="text">
                     <button type="submit" class="btn btn-primary">Save Changes</button>

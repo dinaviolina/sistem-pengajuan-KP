@@ -12,53 +12,118 @@ class ProdiController extends Controller
     public function index() {
         $data_prodi = DB::table('prodi')
         ->select('*')
-        ->join('fakultas', 'prodi.id_admin_fakultas', '=', 'fakultas.id_admin_fakultas')
-        ->where('id_prodi', '=', 55201)
+        ->join('fakultas', 'prodi.kodeFakultas', '=', 'fakultas.kodeFakultas')
+        ->where('NIPkaprodi', '=', session('username'))
         ->first();
 
-        return view('prodi.home',['title' => "Dashboard Prodi",'prodi' => $data_prodi]);
+        $get_periode = DB::table('periodeKP')
+        ->select('*')
+        ->orderBy('id_periodeKP', 'desc')
+        ->first();
+
+        $data_spkp_not_reviewed = DB::table('kp')
+        ->join('periodekp', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
+        ->where('status', '=', 'Telah mengisi data')
+        ->where('prodi.kodeProdi', '=', 55201)
+        ->where('kp.id_periodeKP', '=', $get_periode->id_periodeKP)
+        ->count(); 
+
+        $data_spkp_approved = DB::table('kp')
+        ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
+        ->where('prodi.kodeProdi', '=', 55201)
+        ->where('kp.id_periodeKP', '=', $get_periode->id_periodeKP)
+        ->where('status', '=', 'Disetujui prodi')
+        ->orWhere('status', '=', 'Disetujui fakultas') 
+        ->orWhere('status', '=', 'Selesai')
+        ->count(); 
+
+        $data_spkp= DB::table('kp')
+        ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
+        ->where('prodi.kodeProdi', '=', 55201)
+        ->where('kp.id_periodeKP', '=', $get_periode->id_periodeKP)
+        ->Where('status', '=', 'Disetujui fakultas') 
+        ->orWhere('status', '=', 'Selesai') 
+        ->count();
+
+
+        return view('prodi.home',['title' => "Dashboard Prodi",'prodi' => $data_prodi, 'spkp_not_reviewed' => $data_spkp_not_reviewed, 'spkp_approved' => $data_spkp_approved, 'spkp' => $data_spkp, 'periode' => $get_periode]);
     }
 
     public function spkp_not_reviewed() {
-        // $data_spkp = DB::table('mahasiswa')
-        // ->select('*')
-        // ->join('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
-        // ->where('status_pengajuan_kp', '=', '')//telah disetujui prodi
-        // ->orWhere('status_pengajuan_kp', '=', '') //telah disetujui fakultas karena otomatis disetujui prodi
-        // ->first();
+        $data_prodi = DB::table('prodi')
+        ->select('*')
+        ->join('fakultas', 'prodi.kodeFakultas', '=', 'fakultas.kodeFakultas')
+        ->where('kodeProdi', '=', 55201)
+        ->first();
+
+        $data_spkp = DB::table('kp')
+        ->select('*')
+        ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->where('status', '=', 'Telah mengisi data')
+        ->get();
+
+        return view('prodi.spkp_belum-ditinjau',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'spkps' => $data_spkp]);
+    }
+
+    public function spkp_review() {
+        $data_kp = DB::table('kp')
+        ->select('*')
+        ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->join('surat_pengantar', 'surat_pengantar.kodeKP', '=', 'kp.kodeKP')
+        ->where('status_pengajuan_kp', '=', 'Telah mengisi data')
+        ->first();
 
         $data_prodi = DB::table('prodi')
         ->select('*')
-        ->join('fakultas', 'prodi.id_admin_fakultas', '=', 'fakultas.id_admin_fakultas')
-        ->where('id_prodi', '=', 55201)
+        ->join('fakultas', 'prodi.kodeFakultas', '=', 'fakultas.kodeFakultas')
+        ->where('kodeProdi', '=', 55201)
         ->first();
 
-        return view('prodi.spkp_belum-ditinjau',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi]);
-        // return view('prodi.spkp_belum-ditinjau',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'spkp-s' => $data_spkp]);
+        return view('prodi.spkp_review',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'kp' => $data_kp]);
     }
 
     public function spkp_approved() {
-        // $data_spkp = DB::table('mahasiswa')
-        // ->select('*')
-        // ->join('prodi', 'prodi.id_prodi', '=', 'mahasiswa.id_prodi')
-        // ->where('status_pengajuan_kp', '=', '')//telah disetujui prodi
-        // ->orWhere('status_pengajuan_kp', '=', '') //telah disetujui fakultas karena otomatis disetujui prodi
-        // ->first();
+        $data_spkp = DB::table('kp')
+        ->select('*')
+        ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
+        ->where('status', '=', 'Disetujui prodi')
+        ->orWhere('status', '=', 'Disetujui fakultas')
+        ->orWhere('status', '=', 'Selesai')
+        ->get();
 
         $data_prodi = DB::table('prodi')
         ->select('*')
-        ->join('fakultas', 'prodi.id_admin_fakultas', '=', 'fakultas.id_admin_fakultas')
-        ->where('id_prodi', '=', 55201)
+        ->join('fakultas', 'prodi.kodeFakultas', '=', 'fakultas.kodeFakultas')
+        ->where('kodeProdi', '=', 55201)
         ->first();
 
-        return view('prodi.spkp_disetujui',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi]);
-        // return view('prodi.spkp_disetujui',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'spkp-s' => $data_spkp]);
+        return view('prodi.spkp_disetujui',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'spkps' => $data_spkp]);
     }
 
     public function spkp_approve($id) {
         DB::table('mahasiswa')
-            ->where('nim', $id)
-            ->update(['status_pengajuan_kp' => ""]); //telah disetujui prodi
+        ->join('kp', 'mahasiswa.nim_mhs', '=', 'kp.nim_mhs')
+        ->where('nim_mhs', $id)
+        ->update(['status' => "Disetujui prodi"]);
+
+        return redirect('/prodi/spkp-not-reviewed');
+    }
+
+    public function spkp_reject($id) {
+        DB::table('mahasiswa')
+        ->join('kp', 'mahasiswa.nim_mhs', '=', 'kp.nim_mhs')
+        ->where('nim_mhs', $id)
+        ->update(['status' => "Belum mengajukan"]);
 
         return redirect('/prodi/spkp-not-reviewed');
     }
@@ -66,8 +131,8 @@ class ProdiController extends Controller
     public function profile() {
         $data_prodi = DB::table('prodi')
         ->select('*')
-        ->join('fakultas', 'prodi.id_admin_fakultas', '=', 'fakultas.id_admin_fakultas')
-        ->where('id_prodi', '=', 55201)
+        ->join('fakultas', 'prodi.kodeFakultas', '=', 'fakultas.kodeFakultas')
+        ->where('kodeProdi', '=', 55201)
         ->first();
 
         return view('prodi.profile',['title' => "Profil Prodi",'prodi' => $data_prodi]);
@@ -86,27 +151,21 @@ class ProdiController extends Controller
             // Simpan path relatif gambar ke dalam $data
             $data['foto_kaprodi'] = $fileName;
         }
-        if ($request->file('ttd_kaprodi')) {
-            $file = $request->file('ttd_kaprodi');
-            $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-
-            // Pindahkan file ke direktori yang diinginkan
-            $file->move(public_path('prodi/img/ttd'), $fileName);
-
-            // Simpan path relatif gambar ke dalam $data
-            $data['ttd_kaprodi'] = $fileName;
-        }
 
         DB::table('prodi')
-            ->where('id_prodi', $id)
+            ->where('kodeProdi', $id)
             ->update($data);
 
         return redirect('/prodi/profile');
     }
     
 
-    public function logout() {
-        
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 
     //--------------------Prodi Template
@@ -280,4 +339,6 @@ class ProdiController extends Controller
             "title" => "Prodi"
         ]);
     }
+
+
 }
