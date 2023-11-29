@@ -27,7 +27,11 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/home', [MahasiswaController::class, 'profil']);
 Route::get('/permohonan_kp', [MahasiswaController::class, 'permohonan']);
 Route::get('/pengajuan', [MahasiswaController::class, 'status_pengajuan']);
+Route::post('/permohonan_pengantar', [MahasiswaController::class, 'pengantar']);
+Route::post('/upload_pengantar', [MahasiswaController::class, 'pengantar_baru']);
 
+Route::get('/view', [MahasiswaController::class, 'view_pdf']);
+Route::get('/download', [MahasiswaController::class, 'download_pdf']);
 
 // ------------------------------------ Dosen Wali
 Route::get('/dpa', function () {
@@ -63,5 +67,5 @@ Route::get('/admin', function () {
     return view('Admin/home',[
         "title" => "Admin"
     ]);
-    ;
+
 });

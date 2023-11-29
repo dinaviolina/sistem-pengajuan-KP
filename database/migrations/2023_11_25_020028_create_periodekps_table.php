@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kaprodis', function (Blueprint $table) {
+        Schema::create('periodekps', function (Blueprint $table) {
             $table->id();
-            $table->string("password");
+            $table->string("semester");
+            $table->string("tahunMulai");
+            $table->string("tahunAkhir");
+            $table->timestamps();
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kaprodis');
+        Schema::dropIfExists('periodekps');
     }
 };

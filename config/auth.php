@@ -100,7 +100,7 @@ return [
         ],
         'kaprodis' => [
             'driver' => 'eloquent',
-            'model' =>  App\Models\Kaprodi::class,
+            'model' =>  App\Models\Prodi::class,
         ],
         'fakultas' => [
             'driver' => 'eloquent',
