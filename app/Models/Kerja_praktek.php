@@ -13,21 +13,16 @@ class Kerja_praktek extends Model
 
     protected $table = 'kerja_prakteks';
     protected $guards = [];
-    protected $fillable=['id', 'proposal_kp', 'status_pengajuan_kp', 'mahasiswa_id'];
+    protected $fillable=['id','status', 'nim_mhs', 'nip_dpa', 'id_periodeKP'];
 
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'mahasiswa_id', 'id');
+        return $this->belongsTo(Mahasiswa::class, 'nim_mhs', 'id');
     }
 
     public function dosen_1()
     {
-        return $this->belongsTo(Dosen_wali::class, 'pembimbing_1','id');
-    }
-
-    public function dosen_2()
-    {
-        return $this->belongsTo(Dosen_wali::class, 'pembimbing_2', 'id');
+        return $this->belongsTo(Dosen_wali::class, 'nip_dpa','id');
     }
 
 

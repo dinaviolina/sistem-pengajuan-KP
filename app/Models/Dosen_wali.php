@@ -12,7 +12,7 @@ class Dosen_wali extends Authenticatable
 
     protected $table = 'dosen_walis';
     protected $guards = [];
-    protected $fillable=['id', 'password'];
+    protected $fillable=['id', 'password', 'namaDPA', 'kodeProdi'];
 
     // public function dosen()
     // {

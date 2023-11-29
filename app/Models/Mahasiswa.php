@@ -12,7 +12,7 @@ class Mahasiswa extends Authenticatable
 
     protected $table = 'mahasiswas';
     protected $guards = [];
-    protected $fillable=['id','dosen_wali','nama_mhs','tempat_lahir','tanggal_lahir','jenis_kelamin','angkatan', 'jumlah_sks', 'image','password'];
+    protected $fillable=['nim_mhs', 'password','nama_mhs', 'jumlahSKS', 'nip_dpa', 'kodeProdi', 'tempat_lahir','tanggal_lahir','jenis_kelamin','angkatan', 'jumlah_sks', 'image'];
 
     public function statusMahasiswa()
     {

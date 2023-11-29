@@ -12,16 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('dosen_wali')->references('id')->on('dosen_walis');
+            $table->id("nim_mhs");
+            $table->string('password_mhs');
             $table->string('nama_mhs');
+            $table->string('jumlahSKS');
+            $table->foreignId('nip_dpa')->references('nip_dpa')->on('dosen_walis');
+            $table->foreignId('kodeProdi')->references('kodeProdi')->on('prodis');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->string('angkatan');
-            $table->string('jumlah_sks');
             $table->string('image')->nullable();
-            $table->string('password');
             $table->timestamps();
         });
     }

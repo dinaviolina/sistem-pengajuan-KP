@@ -50,6 +50,13 @@
                     <p class="text-center small">Enter your id and password to login</p>
                   </div>
 
+                  @if (session()->has('wrong'))
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="text-align: center">
+                        {{ session('wrong') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  @endif
+
                   <form action="/succesLogin" method="post" class="row g-3 needs-validation">
                     @csrf
                     <div class="col-12">

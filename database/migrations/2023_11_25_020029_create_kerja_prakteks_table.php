@@ -13,15 +13,11 @@ return new class extends Migration
     {
         Schema::create('kerja_prakteks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mahasiswa_id')->references('id')->on('mahasiswas');
-            $table->foreignId('pembimbing_1')->references('id')->on('dosen_walis')->nullable();
-            $table->foreignId('pembimbing_2')->references('id')->on('dosen_walis')->nullable();
-            $table->string('instansi_tujuan')->nullable();
-            $table->string('judul_penelitian')->nullable();
-            $table->string('waktu_penelitian')->nullable();
-            $table->string('surat_pengantar')->nullable();
-            $table->string('proposal_kp')->nullable();
-            $table->string('status_pengajuan_kp');
+            $table->string('status');
+            $table->string('instansi_kp')->nullable();
+            $table->foreignId('nim_mhs')->references('nim_mhs')->on('mahasiswas');
+            $table->foreignId('nip_dpa')->references('nip_dpa')->on('dosen_walis')->nullable();
+            $table->foreignId('id_periodeKP')->references('id')->on('periodekps');
             $table->timestamps();
         });
     }
