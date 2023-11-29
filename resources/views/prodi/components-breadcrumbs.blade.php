@@ -1,10 +1,10 @@
-@extends('layouts.prodi')
+@extends('layouts.prodi_template')
 @section('main')
 <div class="pagetitle">
   <h1>Breadcrumbs</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+      <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
       <li class="breadcrumb-item">Components</li>
       <li class="breadcrumb-item active">Breadcrumbs</li>
     </ol>
@@ -21,7 +21,7 @@
 
           <nav>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Default</li>
             </ol>
@@ -35,7 +35,7 @@
 
           <nav class="d-flex justify-content-center">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Centered Position</li>
             </ol>
@@ -49,7 +49,7 @@
 
           <nav class="d-flex justify-content-end">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Right Position</li>
             </ol>
@@ -63,7 +63,7 @@
 
           <nav>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home"><i class="bi bi-house-door"></i></a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template"><i class="bi bi-house-door"></i></a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Default</li>
             </ol>
@@ -83,7 +83,7 @@
             <h1>Page Title</h1>
             <nav>
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+                <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
                 <li class="breadcrumb-item">Components</li>
                 <li class="breadcrumb-item active">Breadcrumbs</li>
               </ol>
@@ -99,7 +99,7 @@
 
           <nav style="--bs-breadcrumb-divider: '>';">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Data</li>
             </ol>
@@ -107,7 +107,7 @@
 
           <nav style="--bs-breadcrumb-divider: '|';">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Data</li>
             </ol>
@@ -115,7 +115,7 @@
 
           <nav style="--bs-breadcrumb-divider: '-';">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Data</li>
             </ol>
@@ -123,7 +123,7 @@
 
           <nav style="--bs-breadcrumb-divider: '•';">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Data</li>
             </ol>
@@ -131,7 +131,7 @@
 
           <nav style="--bs-breadcrumb-divider: '';">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+              <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
               <li class="breadcrumb-item"><a href="#">Library</a></li>
               <li class="breadcrumb-item active">Data</li>
             </ol>

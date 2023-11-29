@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\MahasiswaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,8 +41,16 @@ Route::get('/dpa', function () {
 });
 
 
-// ------------------------------------ Prodi
+// --------------Prodi
 Route::get('/prodi/home', [ProdiController::class, 'index']);
+Route::get('/prodi/template', [ProdiController::class, 'template']);
+Route::get('/prodi/spkp-not-reviewed', [ProdiController::class, 'spkp_not_reviewed']);
+Route::get('/prodi/spkp-not-reviewed/approve/{id}', [ProdiController::class, 'spkp_approve']);
+Route::get('/prodi/spkp-approved', [ProdiController::class, 'spkp_approved']);
+Route::get('/prodi/profile', [ProdiController::class, 'profile']);
+Route::post('/prodi/edit-profile/{id}', [ProdiController::class, 'editProfile']);
+
+//---------------Prodi Template
 Route::get('/prodi/users-profile', [ProdiController::class, 'usersProfile']);
 Route::get('/prodi/pages-faq', [ProdiController::class, 'pagesFaq']);
 Route::get('/prodi/pages-contact', [ProdiController::class, 'pagesContact']);
@@ -90,4 +99,5 @@ Route::get('/admin', function () {
     return view('Admin/home',[
         "title" => "Admin"
     ]);
+
 });

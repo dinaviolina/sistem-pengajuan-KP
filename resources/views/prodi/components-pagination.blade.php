@@ -1,10 +1,10 @@
-@extends('layouts.prodi')
+@extends('layouts.prodi_template')
 @section('main')
 <div class="pagetitle">
   <h1>Pagination</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
+      <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
       <li class="breadcrumb-item">Components</li>
       <li class="breadcrumb-item active">Pagination</li>
     </ol>
