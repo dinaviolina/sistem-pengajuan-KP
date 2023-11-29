@@ -1,12 +1,12 @@
 @extends('layouts.prodi')
 @section('main')
 <div class="pagetitle">
-  <h1>Tinjau Surat Pengajuan Kerja Praktek</h1>
+  <h1>Detil Surat Pengajuan Kerja Praktek</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
-      <li class="breadcrumb-item">spkp-belum-ditinjau</li>
-      <li class="breadcrumb-item active">spkp-review</li>
+      <li class="breadcrumb-item">spkp-approved</li>
+      <li class="breadcrumb-item active">spkp-detail</li>
     </ol>
   </nav>
 </div><!-- End Page Title -->
@@ -66,8 +66,7 @@
               <br>
               <div class="row">
                 <div class="col-lg-12 col-md-6 label">
-                  <a type="button" class="btn btn-success btn-sm" href="/prodi/spkp-review/approve/{{ $kp->nim_mhs }}">Setujui</a>
-                  <a type="button" class="btn btn-danger btn-sm" href="/prodi/spkp-review/reject/{{ $kp->nim_mhs }}">Tolak</a>
+                  <span class="badge text-success">Telah disetujui</span>
                 </div>
               </div>
 

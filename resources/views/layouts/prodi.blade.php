@@ -109,12 +109,12 @@
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/prodi/spkp-not-reviewed">
+            <a href="/prodi/spkp/not-reviewed">
               <i class="bi bi-circle"></i><span>Belum Ditinjau</span>
             </a>
           </li>
           <li>
-            <a href="/prodi/spkp-approved">
+            <a href="/prodi/spkp/approved">
               <i class="bi bi-circle"></i><span>Telah disetujui</span>
             </a>
           </li>
@@ -136,7 +136,7 @@
       &copy; Copyright <strong><span>Kelompok 4</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      Designed by <a href="https://bootstrapmade.com/">Pemodelan Proses Bisnis B</a>
+      Designed by <b>Pemodelan Proses Bisnis B<b>
     </div>
   </footer><!-- End Footer -->
 

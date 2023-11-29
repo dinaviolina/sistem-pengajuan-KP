@@ -9,6 +9,7 @@ class Admin extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'admin';
+    protected $table = 'admins';
     protected $guards = [];
+    protected $fillable=['id','username', 'password'];
 }

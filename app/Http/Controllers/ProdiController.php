@@ -8,51 +8,57 @@ use Illuminate\Support\Facades\Auth;
 
 class ProdiController extends Controller
 {
+    protected $get_periode;
+
+    public function __construct()
+    {
+        $this->get_periode = DB::table('periodeKP')
+            ->select('*')
+            ->orderBy('id_periodeKP', 'desc')
+            ->first();
+    }
     // --------------Prodi
     public function index() {
         $data_prodi = DB::table('prodi')
         ->select('*')
         ->join('fakultas', 'prodi.kodeFakultas', '=', 'fakultas.kodeFakultas')
-        ->where('NIPkaprodi', '=', session('username'))
-        ->first();
-
-        $get_periode = DB::table('periodeKP')
-        ->select('*')
-        ->orderBy('id_periodeKP', 'desc')
+        ->where('kodeProdi', '=', 55201)
         ->first();
 
         $data_spkp_not_reviewed = DB::table('kp')
-        ->join('periodekp', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
         ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
         ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
         ->where('status', '=', 'Telah mengisi data')
-        ->where('prodi.kodeProdi', '=', 55201)
-        ->where('kp.id_periodeKP', '=', $get_periode->id_periodeKP)
+        ->where('mahasiswa.kodeProdi', '=', 55201)
+        ->where('kp.id_periodeKP', '=', $this->get_periode->id_periodeKP)
         ->count(); 
 
         $data_spkp_approved = DB::table('kp')
-        ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
         ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
         ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
-        ->where('prodi.kodeProdi', '=', 55201)
-        ->where('kp.id_periodeKP', '=', $get_periode->id_periodeKP)
-        ->where('status', '=', 'Disetujui prodi')
-        ->orWhere('status', '=', 'Disetujui fakultas') 
-        ->orWhere('status', '=', 'Selesai')
-        ->count(); 
-
-        $data_spkp= DB::table('kp')
-        ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
-        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
-        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
-        ->where('prodi.kodeProdi', '=', 55201)
-        ->where('kp.id_periodeKP', '=', $get_periode->id_periodeKP)
-        ->Where('status', '=', 'Disetujui fakultas') 
-        ->orWhere('status', '=', 'Selesai') 
+        ->where('mahasiswa.kodeProdi', '=', 55201)
+        ->where('kp.id_periodeKP', '=', $this->get_periode->id_periodeKP)
+        ->where(function ($query) {
+            $query->where('status', '=', 'Disetujui prodi')
+                ->orWhere('status', '=', 'Disetujui fakultas')
+                ->orWhere('status', '=', 'Selesai');
+            })
         ->count();
 
+        $data_spkp= DB::table('kp')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
+        ->where('mahasiswa.kodeProdi', '=', 55201)
+        ->where('kp.id_periodeKP', '=', $this->get_periode->id_periodeKP)
+        ->where(function ($query) {
+            $query->where('status', '=', 'Telah mengisi data')
+                ->orWhere('status', '=', 'Disetujui prodi')
+                ->orWhere('status', '=', 'Disetujui fakultas')
+                ->orWhere('status', '=', 'Selesai');
+            })
+        ->count();
 
-        return view('prodi.home',['title' => "Dashboard Prodi",'prodi' => $data_prodi, 'spkp_not_reviewed' => $data_spkp_not_reviewed, 'spkp_approved' => $data_spkp_approved, 'spkp' => $data_spkp, 'periode' => $get_periode]);
+        return view('prodi.home',['title' => "Dashboard Prodi",'prodi' => $data_prodi, 'spkp_not_reviewed' => $data_spkp_not_reviewed, 'spkp_approved' => $data_spkp_approved, 'spkp' => $data_spkp, 'periode' => $this->get_periode]);
     }
 
     public function spkp_not_reviewed() {
@@ -66,19 +72,22 @@ class ProdiController extends Controller
         ->select('*')
         ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
         ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->where('mahasiswa.kodeProdi', '=', 55201)
         ->where('status', '=', 'Telah mengisi data')
+        ->where('kp.id_periodeKP', '=', $this->get_periode->id_periodeKP)
         ->get();
 
-        return view('prodi.spkp_belum-ditinjau',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'spkps' => $data_spkp]);
+        return view('prodi.spkp_belum-ditinjau',['title' => "Daftar SPKP Belum Ditinjau",'prodi' => $data_prodi, 'spkps' => $data_spkp, 'periode' => $this->get_periode]);
     }
 
-    public function spkp_review() {
+    public function spkp_review($nim) {
         $data_kp = DB::table('kp')
         ->select('*')
         ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
-        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
         ->join('surat_pengantar', 'surat_pengantar.kodeKP', '=', 'kp.kodeKP')
-        ->where('status_pengajuan_kp', '=', 'Telah mengisi data')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
+        ->where('kp.nim_mhs', '=', $nim)
         ->first();
 
         $data_prodi = DB::table('prodi')
@@ -87,7 +96,25 @@ class ProdiController extends Controller
         ->where('kodeProdi', '=', 55201)
         ->first();
 
-        return view('prodi.spkp_review',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'kp' => $data_kp]);
+        return view('prodi.spkp_review',['title' => "Tinjau SPKP",'prodi' => $data_prodi, 'kp' => $data_kp]);
+    }
+
+    public function spkp_review_approve($id) {
+        DB::table('mahasiswa')
+        ->join('kp', 'mahasiswa.nim_mhs', '=', 'kp.nim_mhs')
+        ->where('kp.nim_mhs', $id)
+        ->update(['status' => "Disetujui prodi"]);
+
+        return redirect('/prodi/spkp-not-reviewed');
+    }
+
+    public function spkp_review_reject($id) {
+        DB::table('mahasiswa')
+        ->join('kp', 'mahasiswa.nim_mhs', '=', 'kp.nim_mhs')
+        ->where('kp.nim_mhs', $id)
+        ->update(['status' => "Belum mengajukan"]);
+
+        return redirect('/prodi/spkp-not-reviewed');
     }
 
     public function spkp_approved() {
@@ -95,10 +122,13 @@ class ProdiController extends Controller
         ->select('*')
         ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
         ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
-        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
-        ->where('status', '=', 'Disetujui prodi')
-        ->orWhere('status', '=', 'Disetujui fakultas')
-        ->orWhere('status', '=', 'Selesai')
+        ->where('kp.id_periodeKP', '=', $this->get_periode->id_periodeKP)
+        ->where('mahasiswa.kodeProdi', '=', 55201)
+        ->where(function ($query) {
+            $query->where('status', '=', 'Disetujui prodi')
+                ->orWhere('status', '=', 'Disetujui fakultas')
+                ->orWhere('status', '=', 'Selesai');
+            })
         ->get();
 
         $data_prodi = DB::table('prodi')
@@ -107,27 +137,28 @@ class ProdiController extends Controller
         ->where('kodeProdi', '=', 55201)
         ->first();
 
-        return view('prodi.spkp_disetujui',['title' => "Surat Pengajuan KP",'prodi' => $data_prodi, 'spkps' => $data_spkp]);
+        return view('prodi.spkp_disetujui',['title' => "Daftar SPKP Disetujui",'prodi' => $data_prodi, 'spkps' => $data_spkp, 'periode' => $this->get_periode]);
     }
 
-    public function spkp_approve($id) {
-        DB::table('mahasiswa')
-        ->join('kp', 'mahasiswa.nim_mhs', '=', 'kp.nim_mhs')
-        ->where('nim_mhs', $id)
-        ->update(['status' => "Disetujui prodi"]);
+    public function spkp_approved_detail($kodeKP) {
+        $data_kp = DB::table('kp')
+        ->select('*')
+        ->join('periodeKP', 'kp.id_periodeKP', '=', 'periodeKP.id_periodeKP')
+        ->join('surat_pengantar', 'surat_pengantar.kodeKP', '=', 'kp.kodeKP')
+        ->join('mahasiswa', 'kp.nim_mhs', '=', 'mahasiswa.nim_mhs')
+        ->join('prodi', 'prodi.kodeProdi', '=', 'mahasiswa.kodeProdi')
+        ->where('kp.kodeKP', '=', $kodeKP)
+        ->first();
 
-        return redirect('/prodi/spkp-not-reviewed');
+        $data_prodi = DB::table('prodi')
+        ->select('*')
+        ->join('fakultas', 'prodi.kodeFakultas', '=', 'fakultas.kodeFakultas')
+        ->where('kodeProdi', '=', 55201)
+        ->first();
+
+        return view('prodi.spkp_detail',['title' => "Detil SPKP",'prodi' => $data_prodi, 'kp' => $data_kp]);
     }
-
-    public function spkp_reject($id) {
-        DB::table('mahasiswa')
-        ->join('kp', 'mahasiswa.nim_mhs', '=', 'kp.nim_mhs')
-        ->where('nim_mhs', $id)
-        ->update(['status' => "Belum mengajukan"]);
-
-        return redirect('/prodi/spkp-not-reviewed');
-    }
-
+    
     public function profile() {
         $data_prodi = DB::table('prodi')
         ->select('*')
@@ -135,10 +166,10 @@ class ProdiController extends Controller
         ->where('kodeProdi', '=', 55201)
         ->first();
 
-        return view('prodi.profile',['title' => "Profil Prodi",'prodi' => $data_prodi]);
+        return view('prodi.profile',['title' => "Profil Prodi",'prodi' => $data_prodi,]);
     }
     
-    public function editProfile(Request $request, $id) {
+    public function edit_profile(Request $request, $id) {
         $data = $request->except(['_token']);
 
         if ($request->file('foto_kaprodi')) {

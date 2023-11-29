@@ -39,50 +39,15 @@ Route::get('/dpa', function () {
 
 // --------------Prodi
 Route::get('/prodi/home', [ProdiController::class, 'index']);
-Route::get('/prodi/spkp-not-reviewed', [ProdiController::class, 'spkp_not_reviewed']);
-Route::get('/prodi/spkp-review/{id}', [ProdiController::class, 'spkp_review']);
-Route::get('/prodi/spkp-not-reviewed/approve/{id}', [ProdiController::class, 'spkp_approve']);
-Route::get('/prodi/spkp-detail/{id}', [ProdiController::class, 'spkp_detail']);
-Route::get('/prodi/spkp-approved', [ProdiController::class, 'spkp_approved']);
+Route::get('/prodi/spkp/not-reviewed', [ProdiController::class, 'spkp_not_reviewed']);
+Route::get('/prodi/spkp/review/{id}', [ProdiController::class, 'spkp_review']);
+Route::get('/prodi/spkp/review/approve/{id}', [ProdiController::class, 'spkp_review_approve']);
+Route::get('/prodi/spkp/review/reject/{id}', [ProdiController::class, 'spkp_review_reject']);
+Route::get('/prodi/spkp/approved', [ProdiController::class, 'spkp_approved']);
+Route::get('/prodi/spkp/approved/detail/{id}', [ProdiController::class, 'spkp_approved_detail']);
 Route::get('/prodi/profile', [ProdiController::class, 'profile']);
-Route::post('/prodi/edit-profile/{id}', [ProdiController::class, 'editProfile']);
+Route::post('/prodi/profile/edit/{id}', [ProdiController::class, 'edit_profile']);
 Route::get('/prodi/logout', [ProdiController::class, 'logout']);
-
-//---------------Prodi Template
-Route::get('/prodi/template', [ProdiController::class, 'template']);
-Route::get('/prodi/users-profile', [ProdiController::class, 'usersProfile']);
-Route::get('/prodi/pages-faq', [ProdiController::class, 'pagesFaq']);
-Route::get('/prodi/pages-contact', [ProdiController::class, 'pagesContact']);
-Route::get('/prodi/pages-register', [ProdiController::class, 'pagesRegister']);
-Route::get('/prodi/pages-login', [ProdiController::class, 'pagesLogin']);
-Route::get('/prodi/pages-error-404', [ProdiController::class, 'pagesError404']);
-Route::get('/prodi/pages-blank', [ProdiController::class, 'pagesBlank']);
-Route::get('/prodi/components-alerts', [ProdiController::class, 'componentsAlerts']);
-Route::get('/prodi/components-accordion', [ProdiController::class, 'componentsAccordion']);
-Route::get('/prodi/components-badges', [ProdiController::class, 'componentsBadges']);
-Route::get('/prodi/components-breadcrumbs', [ProdiController::class, 'componentsBreadcrumbs']);
-Route::get('/prodi/components-buttons', [ProdiController::class, 'componentsButtons']);
-Route::get('/prodi/components-cards', [ProdiController::class, 'componentsCards']);
-Route::get('/prodi/components-carousel', [ProdiController::class, 'componentsCarousel']);
-Route::get('/prodi/components-list-group', [ProdiController::class, 'componentsListGroup']);
-Route::get('/prodi/components-modal', [ProdiController::class, 'componentsModal']);
-Route::get('/prodi/components-tabs', [ProdiController::class, 'componentsTabs']);
-Route::get('/prodi/components-pagination', [ProdiController::class, 'componentsPagination']);
-Route::get('/prodi/components-progress', [ProdiController::class, 'componentsProgress']);
-Route::get('/prodi/components-spinners', [ProdiController::class, 'componentsSpinners']);
-Route::get('/prodi/components-tooltips', [ProdiController::class, 'componentsTooltips']);
-Route::get('/prodi/forms-elements', [ProdiController::class, 'formsElements']);
-Route::get('/prodi/forms-layouts', [ProdiController::class, 'formsLayouts']);
-Route::get('/prodi/forms-editors', [ProdiController::class, 'formsEditors']);
-Route::get('/prodi/forms-validation', [ProdiController::class, 'formsValidation']);
-Route::get('/prodi/tables-general', [ProdiController::class, 'tablesGeneral']);
-Route::get('/prodi/tables-data', [ProdiController::class, 'tablesData']);
-Route::get('/prodi/charts-chartjs', [ProdiController::class, 'chartsChartjs']);
-Route::get('/prodi/charts-apexcharts', [ProdiController::class, 'chartsApexcharts']);
-Route::get('/prodi/charts-echarts', [ProdiController::class, 'chartsEcharts']);
-Route::get('/prodi/icons-bootstrap', [ProdiController::class, 'iconsBootstrap']);
-Route::get('/prodi/icons-remix', [ProdiController::class, 'iconsRemix']);
-Route::get('/prodi/icons-boxicons', [ProdiController::class, 'iconsBoxicons']);
 
 
 // ------------------------------------ Fakultas

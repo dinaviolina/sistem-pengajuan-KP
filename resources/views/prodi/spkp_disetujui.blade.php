@@ -4,7 +4,7 @@
   <h1>Data Surat Permohonan Yang Telah Disetujui</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
+      <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
       <li class="breadcrumb-item">Surat Permohonan KP</li>
       <li class="breadcrumb-item active">Telah disetujui</li>
     </ol>
@@ -17,7 +17,7 @@
 
       <div class="card">
         <div class="card-body">
-          <br>
+          <h5 class="card-title">Semester {{ $periode->semester }} {{ $periode->tahunMulai }}/{{ $periode->tahunAkhir }}</h5>
           <!-- Table with stripped rows -->
           <table class="table datatable">
             <thead>
@@ -36,7 +36,7 @@
                 <td>{{ $spkp->nama_mhs }}</td>
                 <td>{{ $spkp->semester }} {{ $spkp->tahunMulai }}/{{ $spkp->tahunAkhir }}</td>
                 <td>
-                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp-detail/{{ $spkp->kodeKP }}">Lihat</a>
+                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp/approved/detail/{{ $spkp->kodeKP }}">Lihat</a>
                 </td>
                 <td>
                   <span class="badge text-success">Disetujui</span>

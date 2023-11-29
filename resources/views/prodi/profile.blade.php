@@ -4,7 +4,7 @@
     <h1>Profile</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
+        <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
         <li class="breadcrumb-item">Kaprodi</li>
         <li class="breadcrumb-item active">Profile</li>
       </ol>
@@ -82,7 +82,7 @@
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                 <!-- Profile Edit Form -->
-                <form action="/prodi/edit-profile/{{ 55201 }}" method="POST" enctype="multipart/form-data">
+                <form action="/prodi/profile/edit/{{ 55201 }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="row mb-3">
                     <label for="foto_kaprodi" class="col-md-4 col-lg-3 col-form-label">Foto Profil</label>
@@ -109,7 +109,7 @@
 
                   <br>
                   <div class="text">
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                   </div>
                 </form><!-- End Profile Edit Form -->
 
@@ -124,66 +124,4 @@
       </div>
     </div>
   </section>
-@endsection
-@section('css')
-
-@endsection
-@section('js')
-
-@endsection
-@section('script')
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    echarts.init(document.querySelector("#trafficChart")).setOption({
-      tooltip: {
-        trigger: 'item'
-      },
-      legend: {
-        top: '5%',
-        left: 'center'
-      },
-      series: [{
-        name: 'Access From',
-        type: 'pie',
-        radius: ['40%', '70%'],
-        avoidLabelOverlap: false,
-        label: {
-          show: false,
-          position: 'center'
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: '18',
-            fontWeight: 'bold'
-          }
-        },
-        labelLine: {
-          show: false
-        },
-        data: [{
-            value: 1048,
-            name: 'Search Engine'
-          },
-          {
-            value: 735,
-            name: 'Direct'
-          },
-          {
-            value: 580,
-            name: 'Email'
-          },
-          {
-            value: 484,
-            name: 'Union Ads'
-          },
-          {
-            value: 300,
-            name: 'Video Ads'
-          }
-        ]
-      }]
-    });
-  });
-</script>
 @endsection
