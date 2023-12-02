@@ -39,13 +39,14 @@ Route::get('/dpa', function () {
 
 // --------------Prodi
 Route::get('/prodi/home', [ProdiController::class, 'index']);
-Route::get('/prodi/spkp-not-reviewed', [ProdiController::class, 'spkp_not_reviewed']);
-Route::get('/prodi/spkp-review/{id}', [ProdiController::class, 'spkp_review']);
-Route::get('/prodi/spkp-not-reviewed/approve/{id}', [ProdiController::class, 'spkp_approve']);
-Route::get('/prodi/spkp-detail/{id}', [ProdiController::class, 'spkp_detail']);
-Route::get('/prodi/spkp-approved', [ProdiController::class, 'spkp_approved']);
+Route::get('/prodi/spkp/not-reviewed', [ProdiController::class, 'spkp_not_reviewed']);
+Route::get('/prodi/spkp/review/{id}', [ProdiController::class, 'spkp_review']);
+Route::get('/prodi/spkp/review/approve/{id}', [ProdiController::class, 'spkp_review_approve']);
+Route::get('/prodi/spkp/review/reject/{id}', [ProdiController::class, 'spkp_review_reject']);
+Route::get('/prodi/spkp/approved', [ProdiController::class, 'spkp_approved']);
+Route::get('/prodi/spkp/approved/detail/{id}', [ProdiController::class, 'spkp_approved_detail']);
 Route::get('/prodi/profile', [ProdiController::class, 'profile']);
-Route::post('/prodi/edit-profile/{id}', [ProdiController::class, 'editProfile']);
+Route::post('/prodi/profile/edit/{id}', [ProdiController::class, 'edit_profile']);
 Route::get('/prodi/logout', [ProdiController::class, 'logout']);
 
 //---------------Prodi Template

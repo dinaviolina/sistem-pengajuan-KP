@@ -1,5 +1,7 @@
 @extends('layouts.prodi')
 @section('main')
+<?php
+?>
 <div class="pagetitle">
   <h1>Dashboard Prodi</h1>
   <nav>
@@ -29,7 +31,7 @@
                 </div>
                 <div class="ps-3">
                   <h6>{{ $spkp_not_reviewed }}</h6>
-                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp-not-reviewed">Tinjau sekarang</a>
+                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp/not-reviewed">Tinjau sekarang</a>
                 </div>
               </div>
             </div>
@@ -50,7 +52,7 @@
                 </div>
                 <div class="ps-3">
                   <h6>{{ $spkp_approved }}</h6>
-                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp-approved">Lihat semuanya</a>
+                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp/approved">Lihat semuanya</a>
                 </div>
               </div>
             </div>

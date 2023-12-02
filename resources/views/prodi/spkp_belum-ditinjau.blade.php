@@ -4,7 +4,7 @@
   <h1>Data Surat Permohonan Yang Belum Ditinjau</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="/prodi/template">Home</a></li>
+      <li class="breadcrumb-item"><a href="/prodi/home">Home</a></li>
       <li class="breadcrumb-item">Surat Permohonan KP</li>
       <li class="breadcrumb-item active">Belum Ditinjau</li>
     </ol>
@@ -17,7 +17,7 @@
 
       <div class="card">
         <div class="card-body">
-          <br>
+          <h5 class="card-title">Semester {{ $periode->semester }} {{ $periode->tahunMulai }}/{{ $periode->tahunAkhir }}</h5>
           <!-- Table with stripped rows -->
           <table class="table datatable">
             <thead>
@@ -37,7 +37,7 @@
                 <td>{{ $spkp->jumlahSKS }}</td>
                 <td>{{ $spkp->semester }} {{ $spkp->tahunMulai }}/{{ $spkp->tahunAkhir }}</td>
                 <td>
-                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp-review/{id}">Tinjau</a>
+                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp/review/{{ $spkp->nim_mhs }}">Tinjau</a>
                 </td>
               </tr>
               @endforeach
