@@ -49,7 +49,7 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Kode Prodi</div>
-                  <div class="col-lg-9 col-md-8">{{ $prodi->kodeProdi }}</div>
+                  <div class="col-lg-9 col-md-8">{{ $prodi->id }}</div>
                 </div>
 
                 <div class="row">
@@ -82,7 +82,7 @@
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                 <!-- Profile Edit Form -->
-                <form action="/prodi/profile/edit/{{ 55201 }}" method="POST" enctype="multipart/form-data">
+                <form action="/prodi/profile/edit/{{ 1 }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="row mb-3">
                     <label for="foto_kaprodi" class="col-md-4 col-lg-3 col-form-label">Foto Profil</label>

@@ -46,7 +46,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="{{ asset('import/assets/img/logo.png') }}" alt="logo utm" style="width: 40px; height: 50px">
-        <span class="d-none d-lg-block">Pengajuan KP</span>
+        <span class="d-none d-lg-block">SIJUTEK</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -77,7 +77,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="/home">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -87,27 +87,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="/logout">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -126,16 +106,16 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="users-profile.html">
+        <a class="nav-link" href="/home">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
       </li><!-- End Dashboard Nav -->
     
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/pengajuan">
+        <a class="nav-link  collapsed" href="/pengajuan">
           <i class="bi bi-question-circle"></i>
-          <span>Status Pengajuan</span>
+          <span>Informasi Pengajuan</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
@@ -188,8 +168,8 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
               <h3> Status Pengajuan KP : </h3>
-              @if(DB::table('kerja_prakteks')->where('mahasiswa_id', $mhs->id)->exists())
-                <h6 style="color: blue"> {{ $status->status_pengajuan_kp }} </h6>
+              @if(DB::table('kerja_prakteks')->where('nim_mhs', $mhs->id)->exists())
+                <h6 style="color: blue"> {{ $status->status }} </h6>
               @else
                 <h6 style="color: red"> "Anda belum mengajukan KP" </h6>
                 <a href="/permohonan_kp" type="button" class="btn btn-outline-success"> Ajukan </a>

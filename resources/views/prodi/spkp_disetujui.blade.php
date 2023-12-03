@@ -36,7 +36,7 @@
                 <td>{{ $spkp->nama_mhs }}</td>
                 <td>{{ $spkp->semester }} {{ $spkp->tahunMulai }}/{{ $spkp->tahunAkhir }}</td>
                 <td>
-                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp/approved/detail/{{ $spkp->kodeKP }}">Lihat</a>
+                  <a type="button" class="btn btn-primary btn-sm" href="/prodi/spkp/approved/detail/{{ $spkp->nim_mhs }}">Lihat</a>
                 </td>
                 <td>
                   <span class="badge text-success">Disetujui</span>

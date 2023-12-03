@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kerja_prakteks', function (Blueprint $table) {
+        Schema::create('periode_kps', function (Blueprint $table) {
             $table->id();
-            $table->string('proposal_kp')->nullable();
-            $table->string('status_pengajuan_kp');
-            $table->foreignId('mahasiswa_id')->references('id')->on('mahasiswas');
+            $table->string("semester");
+            $table->string("tahunMulai");
+            $table->string("tahunAkhir");
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kerja_prakteks');
+        Schema::dropIfExists('periode_kps');
     }
 };

@@ -43,17 +43,17 @@ return [
 
         'mahasiswa' => [
             'driver' => 'session',
-            'provider' => 'mahasiswa'
+            'provider' => 'mahasiswas'
         ], 
 
-        'dpa' => [
+        'dosen_wali' => [
             'driver' => 'session',
-            'provider' => 'dpa'
+            'provider' => 'dosen_walis'
         ], 
 
         'prodi' => [
             'driver' => 'session',
-            'provider' => 'prodi'
+            'provider' => 'prodis'
         ],
 
         'fakultas' => [
@@ -63,7 +63,7 @@ return [
 
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admin'
+            'provider' => 'admins'
         ], 
     ],
 
@@ -90,15 +90,15 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'mahasiswa' => [
+        'mahasiswas' => [
             'driver' => 'eloquent',
             'model' =>  App\Models\Mahasiswa::class,
         ],
-        'dpa' => [
+        'dosen_walis' => [
             'driver' => 'eloquent',
-            'model' =>  App\Models\DPA::class,
+            'model' =>  App\Models\Dosen_wali::class,
         ],
-        'prodi' => [
+        'prodis' => [
             'driver' => 'eloquent',
             'model' =>  App\Models\Prodi::class,
         ],
@@ -106,7 +106,7 @@ return [
             'driver' => 'eloquent',
             'model' =>  App\Models\Fakultas::class,
         ],
-        'admin' => [
+        'admins' => [
             'driver' => 'eloquent',
             'model' =>  App\Models\Admin::class,
         ],

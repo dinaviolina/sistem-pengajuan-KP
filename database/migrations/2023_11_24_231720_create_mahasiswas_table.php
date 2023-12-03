@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dosen_wali')->references('id')->on('dosen_walis');
+            $table->string('password');
             $table->string('nama_mhs');
+            $table->string('jumlahSKS');
+            $table->foreignId('nip_dpa')->references('id')->on('dosen_walis');
+            $table->foreignId('kodeProdi')->references('id')->on('prodis');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->string('angkatan');
-            $table->string('jumlah_sks');
             $table->string('image')->nullable();
-            $table->string('password');
             $table->timestamps();
         });
     }

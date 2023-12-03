@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('dosen_walis', function (Blueprint $table) {
             $table->id();
             $table->string("password");
+            $table->string("namaDPA");
+            $table->foreignId('kodeProdi')->references('id')->on('prodis');
             $table->timestamps();
         });
     }

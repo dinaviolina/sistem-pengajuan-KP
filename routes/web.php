@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\MahasiswaController;
-
+use App\Http\Controllers\ProdiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,14 +19,19 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::post('/login', [LoginController::class, 'postLogin']);
+Route::post('/succesLogin', [LoginController::class, 'postLogin']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // ------------------------------------ Mahasiswa
 Route::get('/home', [MahasiswaController::class, 'profil']);
 Route::get('/permohonan_kp', [MahasiswaController::class, 'permohonan']);
 Route::get('/pengajuan', [MahasiswaController::class, 'status_pengajuan']);
+Route::post('/permohonan_pendataan', [MahasiswaController::class, 'pendataan']);
+Route::post('/permohonan_pengantar', [MahasiswaController::class, 'pengantar']);
+Route::post('/upload_pengantar', [MahasiswaController::class, 'pengantar_baru']);
 
+Route::get('/view', [MahasiswaController::class, 'view_pdf']);
+Route::get('/download', [MahasiswaController::class, 'download_pdf']);
 
 // ------------------------------------ Dosen Wali
 Route::get('/dpa', function () {
@@ -47,7 +51,6 @@ Route::get('/prodi/spkp/approved', [ProdiController::class, 'spkp_approved']);
 Route::get('/prodi/spkp/approved/detail/{id}', [ProdiController::class, 'spkp_approved_detail']);
 Route::get('/prodi/profile', [ProdiController::class, 'profile']);
 Route::post('/prodi/profile/edit/{id}', [ProdiController::class, 'edit_profile']);
-Route::get('/prodi/logout', [ProdiController::class, 'logout']);
 
 //---------------Prodi Template
 Route::get('/prodi/template', [ProdiController::class, 'template']);
@@ -88,7 +91,7 @@ Route::get('/prodi/icons-boxicons', [ProdiController::class, 'iconsBoxicons']);
 
 // ------------------------------------ Fakultas
 Route::get('/fakultas', function () {
-    return view('Fakultas/surat_permohonan',[
+    return view('Fakultas/home',[
         "title" => "Fakultas"
     ]);
 });
