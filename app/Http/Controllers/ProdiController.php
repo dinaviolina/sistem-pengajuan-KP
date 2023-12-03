@@ -19,19 +19,19 @@ class ProdiController extends Controller
     }
     // --------------Prodi
     public function index() {
+
         $data_spkp_not_reviewed = DB::table('kerja_prakteks')
         ->join('mahasiswas', 'kerja_prakteks.nim_mhs', '=', 'mahasiswas.id')
-        ->join('prodis', 'prodis.id', '=', 'mahasiswas.id')
-        ->where('status', '=', 'Telah mengisi data')
         ->where('mahasiswas.kodeProdi', '=', Auth::guard('prodi')->user()->id)
+        ->where('status', '=', 'Telah mengisi data')
         ->where('kerja_prakteks.id_periodeKP', '=', $this->get_periode->id)
         ->count(); 
 
         $data_spkp_approved = DB::table('kerja_prakteks')
         ->join('mahasiswas', 'kerja_prakteks.nim_mhs', '=', 'mahasiswas.id')
-        ->join('prodis', 'prodis.id', '=', 'mahasiswas.id')
-        ->where('mahasiswas.kodeProdi', '=', Auth::guard('prodi')->user()->id)
+        ->join('prodis', 'prodis.id', '=', 'mahasiswas.kodeProdi')
         ->where('kerja_prakteks.id_periodeKP', '=', $this->get_periode->id)
+        ->where('prodis.id', '=', Auth::guard('prodi')->user()->id)
         ->where(function ($query) {
             $query->where('status', '=', 'Disetujui prodi')
                 ->orWhere('status', '=', 'Disetujui fakultas')
@@ -41,8 +41,8 @@ class ProdiController extends Controller
 
         $data_spkp= DB::table('kerja_prakteks')
         ->join('mahasiswas', 'kerja_prakteks.nim_mhs', '=', 'mahasiswas.id')
-        ->join('prodis', 'prodis.id', '=', 'mahasiswas.id')
-        ->where('mahasiswas.kodeProdi', '=', Auth::guard('prodi')->user()->id)
+        ->join('prodis', 'prodis.id', '=', 'mahasiswas.kodeProdi')
+        ->where('prodis.id', '=', Auth::guard('prodi')->user()->id)
         ->where('kerja_prakteks.id_periodeKP', '=', $this->get_periode->id)
         ->where(function ($query) {
             $query->where('status', '=', 'Telah mengisi data')
@@ -78,7 +78,7 @@ class ProdiController extends Controller
         ->where('kerja_prakteks.nim_mhs', '=', $nim)
         ->first();
 
-        return view('prodi.spkp_review',['title' => "Tinjau SPKP",'prodi' => Auth::guard('prodi')->user()->id, 'kp' => $data_kp]);
+        return view('prodi.spkp_review',['title' => "Tinjau SPKP",'prodi' => Auth::guard('prodi')->user(), 'kp' => $data_kp]);
     }
 
     public function spkp_review_approve($id) {
@@ -92,9 +92,9 @@ class ProdiController extends Controller
 
     public function spkp_review_reject($id) {
         DB::table('mahasiswas')
-        ->join('kp', 'mahasiswas.id', '=', 'kerja_prakteks.nim_mhs')
+        ->join('kerja_prakteks', 'mahasiswas.id', '=', 'kerja_prakteks.nim_mhs')
         ->where('kerja_prakteks.nim_mhs', $id)
-        ->update(['status' => "Belum mengajukan"]);
+        ->delete();
 
         return redirect('/prodi/spkp/not-reviewed');
     }
