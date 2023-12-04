@@ -45,13 +45,12 @@
                     @if(empty($acc->nomor_sutar))
                         <form method="GET" action="{{ route('Fakultas.edit_surat', $acc->id) }}">
                             @csrf
-                            <button type="submit" class="btn btn-success">Buat/Edit Surat</button>
+                            <button type="submit" class="btn btn-success">Create surat</button>
                         </form>
                         @else
-                    <a href="{{ route('Fakultas/sp', $acc->nomor_sutar) }}" class="btn btn-primary" target="_blank">Cetak Surat</a>
+                    <a href="{{ route('Fakultas/sp', $acc->nomor_sutar) }}" class="btn btn-primary " target="_blank">Print Surat</a>
 
                     @endif
-                    <!-- <a href="{{ route('Fakultas/surat/form', ['nim' => $acc->nim_mhs]) }}" class="btn btn-primary">Buat Surat</a> -->
                     </td> 
                   </tr>
                   @endforeach

@@ -18,7 +18,14 @@ class AdminfakultasController extends Controller
     public function index()
     {
         // $dpa = AdminfakultasModel::with('dosen_walis')->get();
-        $data_kp = DB::table('kerja_prakteks')->get();
+        $data_kp = DB::table('kerja_prakteks')
+        ->join('mahasiswas', 'kerja_prakteks.nim_mhs', '=', 'mahasiswas.id')
+        ->join('periode_kps', 'kerja_prakteks.id_periodeKP', '=', 'periode_kps.id')
+        ->select('kerja_prakteks.*',
+                'mahasiswas.nama_mhs as nama_mhs',
+                'periode_kps.semester as periode')
+        ->get();
+        
         return view('Fakultas/data_pengajuan', [
             'data_kp' => $data_kp,
             // 'dosen_walis' => $dpa,
@@ -110,29 +117,27 @@ class AdminfakultasController extends Controller
         ->first() ;
         return view('/Fakultas/sp',['data_surat' => $data_surat]);
     }
+    public function editSurat($id)
+        {
+            // Ambil data berdasarkan id
+            $data = Surat_pengantar::find($id);
+            // Tampilkan formulir edit dengan data yang sudah ada
+            return view('Fakultas.form_edit_surat', compact('data'));
+        }
+        
+        public function updateSurat(Request $request, $id)
+        {
+            // Validasi dan proses penyimpanan nomor surat
+            $request->validate([
+                'nomor_sutar' => 'required',
+            ]);
+            $data = Surat_pengantar::find($id); // Ganti dengan model yang sesuai
+            $data->nomor_sutar = $request->input('nomor_sutar');
+            $data->save();
+            return redirect()->back()->with('success', 'Nomor surat berhasil diupdate.');
+        }
     public function downloadpdf(){
-
         $pdf = PDF::loadView('Fakultas/sp')->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->download('surat_pengantar.pdf');
-    }
-// EDIT bismillah
-public function editSurat($id)
-    {
-        // Ambil data berdasarkan id
-        $data = Surat_pengantar::find($id);
-        // Tampilkan formulir edit dengan data yang sudah ada
-        return view('Fakultas.form_edit_surat', compact('data'));
-    }
-    
-    public function updateSurat(Request $request, $id)
-    {
-        // Validasi dan proses penyimpanan nomor surat
-        $request->validate([
-            'nomor_sutar' => 'required',
-        ]);
-        $data = Surat_pengantar::find($id); // Ganti dengan model yang sesuai
-        $data->nomor_sutar = $request->input('nomor_sutar');
-        $data->save();
-        return redirect()->back()->with('success', 'Nomor surat berhasil diupdate.');
     }
 }

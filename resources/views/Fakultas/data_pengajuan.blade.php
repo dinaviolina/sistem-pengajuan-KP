@@ -19,7 +19,7 @@
                       <th scope="col">NIM</th>
                       <th scope="col">Nama</th>
                       <th scope="col">NIP Dosen Wali</th>
-                      <th scope="col">id Periode KP</th>
+                      <th scope="col">Periode KP</th>
                       <th scope="col">Prodi</th> 
                       <th scope="col">Instansi </th> 
                       <th scope="col">Status</th> 
@@ -30,9 +30,9 @@
                       @foreach ($data_kp as $data)
                     <tr>
                         <td>{{$data->nim_mhs}}</td>
-                        <td></td>
+                        <td>{{$data->nama_mhs}}</td>
                         <td>{{$data->nip_dpa}}</td>
-                        <td>{{$data->id_periodeKP}}</td>
+                        <td>{{$data->periode}}</td>
                         <td>Prodi</td>
                         <td>{{$data->instansi_kp}}</td>
                         <td><span class="badge bg-success">{{$data->status}}</span></td>
