@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\AdminfakultasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,6 +96,26 @@ Route::get('/fakultas', function () {
         "title" => "Fakultas"
     ]);
 });
+// Route::get('/Fakultas/profil', function () {return view('Fakultas/profil',["title"=>"Profil"]);});
+Route::get('/Fakultas/profil', [AdminfakultasController::class, 'showProfile']) ;
+// Route::get('/Fakultas/data', function(){return view('Fakultas/data_pengajuan',["title"=>"Data Surat"]);});
+Route::get('/Fakultas/data_pengajuan', [AdminfakultasController::class, 'index']) ;
+Route::get('/Fakultas/surat{nim}', [AdminfakultasController::class, 'create_surat'])->name('Fakultas/surat/form') ;
+
+Route::get('/Fakultas/surat', [AdminfakultasController::class, 'view_form']) ;
+Route::get('/Fakultas/data_acc', [AdminfakultasController::class, 'data_acc_surat_permohonan']);
+// Route::POST('/Fakultas/sp', [AdminfakultasController::class, 'prosesForm'])->name('Fakultas.sp');
+Route::get('/Fakultas/sp', [AdminfakultasController::class, 'surat'])->name('Fakultas/sp');
+// Report PDF 
+Route::get('downloadpdf', [AdminfakultasController::class, 'downloadpdf']);
+Route::POST('/Fakultas/suratpermohonan{id}', [AdminfakultasController::class, 'prosesForm'])->name('Fakultas.suratpermohonan');
+Route::get('/Fakultas/acc/{nim_mhs}', [AdminfakultasController::class, 'approved'])->name('Fakultas/acc/approve');
+Route::get('/Fakultas/tolak/{nim_mhs}', [AdminfakultasController::class, 'approved'])->name('Fakultas/tolak/approve');
+
+// SURAT
+Route::get('/edit-surat/{id}', [AdminfakultasController::class, 'editSurat'])->name('Fakultas.edit_surat');
+Route::post('/update-surat/{id}', [AdminfakultasController::class, 'updateSurat'])->name('Fakultas.update_surat');
+
 
 
 // ------------------------------------ Admin
